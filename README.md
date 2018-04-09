@@ -1,0 +1,1 @@
+# vba-license-cross-check
