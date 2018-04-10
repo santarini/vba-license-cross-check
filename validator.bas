@@ -1,12 +1,16 @@
 Sub DateTest()
 
 Dim x As Long
-Dim y As Date
+Dim y, z As Date
 
 
-x = 43191
-
+x = 43199
 y = Format(x, "Short Date")
+z = Date
+
+If y = z Then
+    MsgBox "Valid License"
+End If
 
 End Sub
 
