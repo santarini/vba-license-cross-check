@@ -2,9 +2,8 @@ Sub DateTest()
 
 'enable MSFT scripting runtime
 
-Dim x As Long
-Dim y, z As Date
-Dim reference As Variant
+Dim x, z As Long
+Dim Reference As Variant
 
 Dim Json As Object
 
@@ -18,15 +17,13 @@ MyRequest.Send
 
 Set Json = JsonConverter.ParseJson(MyRequest.ResponseText)
 
-reference = Json("testCompany")("finSoft")("licenses")("references")
+Reference = Json("testCompany")("finSoft")("licenses")("references")
 
-MsgBox reference
+z = DateValue(Date)
 
-x = 43199
-y = Format(x, "Short Date")
-z = Date
+MsgBox z
 
-If y = z Then
+If InStr(1, Reference, z) Then
     MsgBox "Valid License"
 End If
 
