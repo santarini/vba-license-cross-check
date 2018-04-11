@@ -29,6 +29,17 @@ End If
 
 End Sub
 
+Sub Unique()
+Dim w, x, y As String
+
+w = Environ("computername")
+x = Environ("userdomain")
+y = Environ("username")
+
+MsgBox w
+
+End Sub
+        
 Sub CheckInternetConnection()
     Dim sendResult As String
     Dim objHTTP As Object
