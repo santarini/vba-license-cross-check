@@ -27,7 +27,9 @@ z = DateValue(Date)
 
 MsgBox z
 
-If InStr(1, Reference, z) Then
+If InStr(1, Reference, z) = 0 Then
+    MsgBox "Your License is Expired."
+Else
     MsgBox "Valid License"
 End If
 
