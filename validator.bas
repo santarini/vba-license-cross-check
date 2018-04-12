@@ -8,8 +8,12 @@ Dim Reference As Variant
 Dim Json As Object
 
 'create a dicitonary
-'Dim Dict As New Dictionary
-'Dict.CompareMode = CompareMethod.TextCompare
+Dim Dict As New Dictionary
+Dict.CompareMode = CompareMethod.TextCompare
+
+Dict("A") = Environ("computername")
+Dict("B") = Environ("username")
+
 
 Set MyRequest = CreateObject("WinHttp.WinHttpRequest.5.1")
 MyRequest.Open "GET", "http://localhost"
@@ -17,7 +21,7 @@ MyRequest.Send
 
 Set Json = JsonConverter.ParseJson(MyRequest.ResponseText)
 
-Reference = Json("testCompany")("finSoft")("licenses")("references")
+Reference = Json("testCompany")(Dict.Item("A"))(Dict.Item("B"))("finSoft")("licenses")("references")
 
 z = DateValue(Date)
 
@@ -29,16 +33,6 @@ End If
 
 End Sub
 
-Sub Unique()
-Dim w, x, y As String
-
-w = Environ("computername")
-x = Environ("userdomain")
-y = Environ("username")
-
-MsgBox w
-
-End Sub
         
 Sub CheckInternetConnection()
     Dim sendResult As String
@@ -49,5 +43,7 @@ Sub CheckInternetConnection()
     objHTTP.Open "GET", URL, False
     objHTTP.Send
     sendResult = objHTTP.ResponseText
-    MsgBox sendResult
+    If IsEmpty(sendResult) = True Then
+        MsgBox "No Internet Connection"
+    End If
 End Sub
